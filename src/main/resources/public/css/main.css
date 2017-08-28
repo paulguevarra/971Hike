@@ -1,0 +1,12 @@
+body {
+    background: url("/images/hikingpakistan.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      color: black;
+}
+
+html {
+	  position: relative;
+	  min-height: 100%;
+}
