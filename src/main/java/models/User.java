@@ -14,13 +14,10 @@ public class User {
         private int id;
 
 
-
-
         public User(String userName, String userLocation, Integer userMaxDistance) {
                 this.userName = userName;
                 this.userLocation = userLocation;
                 this.userMaxDistance = userMaxDistance;
-
 
         }
 
