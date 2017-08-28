@@ -1,7 +1,7 @@
-package dao;
+package models;
 
 /**
  * Created by Guest on 8/24/17.
  */
-public class Sql2oReviewDao {
+public class Journal {
 }

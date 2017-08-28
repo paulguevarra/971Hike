@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Guest on 8/24/17.
  */
-public class Sql2oHikeDaoTest {
+public class Sql2OUserDaoTest {
     @Before
     public void setUp() throws Exception {
     }
