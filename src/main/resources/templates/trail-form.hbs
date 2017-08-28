@@ -27,6 +27,7 @@
 
     {{#if editTrail}}
         <h2>Update a trail</h2>
+        <p><a href="/trails/{{editTrail.id}}/delete">delete this trail</a></p>
         <form action="/trails/{{editTrail.id}}/update" method="post">
             <div class="form-group">
                 <label for="name">Trail name: </label>
@@ -44,6 +45,7 @@
                 <label for="distance">Distance: </label>
                 <input id="distance" name="distance" type="number" value="{{editTrail.distance}}" required>
             </div>
+
 
     {{else}}
         <h2>Add a new trail!</h2>
