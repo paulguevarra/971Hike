@@ -6,9 +6,9 @@ import org.junit.Before;
 import static org.junit.Assert.*;
 
 /**
- * Created by Guest on 8/24/17.
+ * Created by Guest on 8/28/17.
  */
-public class HikeTest {
+public class TrailTest {
     @Before
     public void setUp() throws Exception {
     }
