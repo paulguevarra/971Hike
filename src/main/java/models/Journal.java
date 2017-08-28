@@ -4,23 +4,20 @@ import java.time.LocalDateTime;
 import java.sql.Timestamp;
 
 
-/**
- * Created by Guest on 8/24/17.
- */
 public class Journal {
 
     private int id;
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
     private String bestSeason;
     private int trailId;
     private int userId;
     private String didIt;
     private String notes;
 
-    public Journal(String bestSeason, int userId, Timestamp createdAt, int trailId, String didIt, String notes) {
+    public Journal(String bestSeason, int userId, LocalDateTime createdAt, int trailId, String didIt, String notes) {
         this.bestSeason = bestSeason;
         this.userId = userId;
-        this.createdAt = Timestamp.valueOf(LocalDateTime.now());
+        this.createdAt = LocalDateTime.now();
         this.didIt = didIt;
         this.notes = notes;
 
@@ -34,11 +31,11 @@ public class Journal {
         this.id = id;
     }
 
-    public Timestamp getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -90,24 +87,26 @@ public class Journal {
         Journal journal = (Journal) o;
 
         if (id != journal.id) return false;
-        if (bestSeason != journal.bestSeason) return false;
         if (trailId != journal.trailId) return false;
-        if (userId != journal.userId ) return false;
+        if (userId != journal.userId) return false;
         if (!createdAt.equals(journal.createdAt)) return false;
-        if (didIt != journal.didIt) return false;
-        return notes != null ? createdAt.equals(journal.notes) : journal.notes == null;
+        if (!bestSeason.equals(journal.bestSeason)) return false;
+        if (!didIt.equals(journal.didIt)) return false;
+        return notes.equals(journal.notes);
     }
 
     @Override
     public int hashCode() {
         int result = id;
+        result = 31 * result + createdAt.hashCode();
         result = 31 * result + bestSeason.hashCode();
         result = 31 * result + trailId;
-        result = 31 * result + (notes != null ? notes.hashCode() : 0);
         result = 31 * result + userId;
-        result = 31 * result + didIt;
+        result = 31 * result + didIt.hashCode();
+        result = 31 * result + notes.hashCode();
         return result;
     }
+
 }
 
 
