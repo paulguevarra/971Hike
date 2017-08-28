@@ -1,32 +1,30 @@
 SET MODE PostgreSQL;
 
-CREATE TABLE IF NOT EXISTS hiker (
+CREATE TABLE IF NOT EXISTS users (
   id int PRIMARY KEY auto_increment,
-  hikername VARCHAR,
-  location VARCHAR,
-  latitude DECIMAL,
-  longitude DECIMAL,
-  maxDistance DECIMAL
+  username VARCHAR,
+  userlocation VARCHAR,
+  usermaxdistance DECIMAL
 );
 
-CREATE TABLE IF NOT EXISTS trail (
+CREATE TABLE IF NOT EXISTS trails (
 id int PRIMARY KEY auto_increment,
 trailname VARCHAR,
 difficulty VARCHAR,
 location VARCHAR
 latitude DECIMAL,
 longitude DECIMAL,
-maxDistance DECIMAL
-hikerid int
+distance DECIMAL
+userid int
 );
 
-CREATE TABLE IF NOT EXISTS journal (
+CREATE TABLE IF NOT EXISTS journals (
 id int PRIMARY KEY auto_increment,
 trailid int,
-hikerid int,
-createdAt DATE,
-bestSeason VARCHAR ,
-didIt VARCHAR,
+userid int,
+createdat DATE,
+bestseason VARCHAR ,
+didit VARCHAR,
 notes VARCHAR
 );
 
