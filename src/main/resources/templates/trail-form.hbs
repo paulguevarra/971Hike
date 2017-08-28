@@ -27,7 +27,7 @@
 
     {{#if editTrail}}
         <h2>Update a trail</h2>
-        <form action="/tours/{{editTrail.id}}/update" method="post">
+        <form action="/trails/{{editTrail.id}}/update" method="post">
             <div class="form-group">
                 <label for="name">Trail name: </label>
                 <input id="name" name="name" type="text" value="{{editTrail.name}}" required>

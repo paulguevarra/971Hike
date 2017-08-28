@@ -19,6 +19,30 @@
 {{/partial}}
 
 {{#partial "content"}}
+    <div class="well">
+
+        <h2>{{trail.name}}</h2>
+        <ul>
+            <li>Difficulty: {{trail.difficulty}}</li>
+            <li>Location: {{trail.location}}</li>
+            <li>Distance: {{trail.distance}}</li>
+        </ul>
+    </div>
+
+    <p><a href="/trails/{{trail.id}}/journals/new">Log this trail</a></p>
+
+    {{#if journals}}
+        {{#each journals}}
+            <ul>
+                <li>{{createdAt}}</li>
+                <li>Best season: {{bestSeason}}</li>
+                <li>Hiked it yet: {{didTheHike}}</li>
+            </ul>
+            <p>{{notes}}</p>
+        {{/each}}
+    {{else}}
+        <p>No journals yet.</p>
+    {{/if}}
 
 
 {{/partial}}
