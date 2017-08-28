@@ -21,6 +21,72 @@
 
 {{#partial "content"}}
 
+    {{#if editJournal}}
+        <h2>Update a journal entry</h2>
+        <form action="/journals/{{editJournal.id}}/update" method="post">
+            <div class="form-group">
+                <label for="userId">Your user ID: </label>
+                <input id="userId" name="userId" type="number" value="{{editJournal.userId}}" required>
+            </div>
+            <div class = "form-group">
+                <label for="createdAt">Date: </label>
+                <input id="createdAt" name="createdAt" type="date" value="{{editTrail.createdAt}}" required>
+            </div>
+            <div class = "form-group">
+                <label for="bestSeason">Best Season: </label>
+                <input id="bestSeason" name="bestSeason" type="text" value="{{editTrail.bestSeason}}" required>
+            </div>
+             <p>Done the hike yet?</p>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="didTheHike" value=true>
+                    Yes
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="didTheHike" value=false>
+                    No
+                </label>
+            </div>
+            <div class = "form-group">
+                <label for="notes">Notes: </label>
+                <input id="notes" name="notes" type="text" value="{{editTrail.notes}}" required>
+            </div>
+    {{else}}
+            <h2>Log a new trail!</h2>
+            <div class="form-group">
+                <label for="userId">Your user ID: </label>
+                <input id="userId" name="userId" type="number" required>
+            </div>
+            <div class = "form-group">
+                <label for="createdAt">Date: </label>
+                <input id="createdAt" name="createdAt" type="date" required>
+            </div>
+            <div class = "form-group">
+                <label for="bestSeason">Best Season: </label>
+                <input id="bestSeason" name="bestSeason" type="text" required>
+            </div>
+            <p>Done the hike yet?</p>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="didTheHike" value=true>
+                    Yes
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="didTheHike" value=false>
+                    No
+                </label>
+            </div>
+            <div class = "form-group">
+                <label for="notes">Notes: </label>
+                <input id="notes" name="notes" type="text" required>
+            </div>
+    {{/if}}
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
 
 {{/partial}}
 
