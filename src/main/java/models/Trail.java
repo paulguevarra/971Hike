@@ -1,6 +1,7 @@
 package models;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 /**
  * Created by Guest on 8/24/17.
@@ -15,11 +16,11 @@ public class Trail {
     private Integer longitude;
     private Integer maxDistance;
     private int id;
-    private int hikerId;
+    private int userId;
+    private static ArrayList<Trail> trailList = new ArrayList<>();
 
 
-
-    public Trail(String trailName, String difficulty, String location, Integer latitude, Integer Longitude, Integer maxDistancem, int hikerId) {
+    public Trail(String trailName, String difficulty, String location, Integer latitude, Integer longitude, Integer maxDistance, int userId) {
         this.trailName = trailName;
         this.difficulty = difficulty;
         this.location = location;
@@ -28,8 +29,9 @@ public class Trail {
         this.maxDistance = maxDistance;
 
 
-        this.hikerId = hikerId;
-
+        this.userId = userId;
+        trailList.add(this);
+        this.id=trailList.size();
     }
 
     public String getTrailName() {
@@ -88,14 +90,23 @@ public class Trail {
         this.id = id;
     }
 
-    public int getHikerId() {
-        return hikerId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setHikerId(int hikerId) {
-        this.hikerId = hikerId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
+    public static ArrayList<Trail> getAllTrails(){
+        return trailList;
+    }
+    public static void deleteAllTrails(){
+        trailList.clear();
+    }
+    public static Trail findTrailById(int id){
+        return trailList.get(id-1);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -110,7 +121,7 @@ public class Trail {
         if (!latitude.equals(that.latitude)) return false;
         if (!longitude.equals(that.longitude)) return false;
         if (!maxDistance.equals(that.maxDistance)) return false;
-        return hikerId!=that.hikerId;
+        return userId!=that.userId;
     }
 
     @Override
@@ -121,7 +132,7 @@ public class Trail {
         result = 31 * result + latitude.hashCode();
         result = 31 * result + longitude.hashCode();
         result = 31 * result + maxDistance.hashCode();
-        result = 31 * result + hikerId;
+        result = 31 * result + userId;
         result = 31 * result + id;
         return result;
     }
