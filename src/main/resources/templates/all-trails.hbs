@@ -21,6 +21,16 @@
 
 {{#partial "content"}}
 
+    {{#if trails}}
+        <ul>
+        {{#each trails}}
+            <li><a href="/trails/{{id}}">{{name}}</a></li>
+        {{/each}}
+        </ul>
+    {{else}}
+        <p>No trails yet!</p>
+    {{/if}}
+
 
 {{/partial}}
 
