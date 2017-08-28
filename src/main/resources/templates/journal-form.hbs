@@ -54,7 +54,8 @@
                 <input id="notes" name="notes" type="text" value="{{editTrail.notes}}" required>
             </div>
     {{else}}
-            <h2>Log a new trail!</h2>
+        <h2>Log a new trail!</h2>
+        <form action="/journals/new" method="post">
             <div class="form-group">
                 <label for="userId">Your user ID: </label>
                 <input id="userId" name="userId" type="number" required>
