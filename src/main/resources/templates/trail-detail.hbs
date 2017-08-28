@@ -28,6 +28,7 @@
             <li>Distance: {{trail.distance}}</li>
         </ul>
     </div>
+    <p><a href="/trails/{{trail.id}}/update"><span class="glyphicon glyphicon-pencil" aria-hidden="true">edit</span></a></p>
 
     <p><a href="/trails/{{trail.id}}/journals/new">Log this trail</a></p>
 
@@ -39,6 +40,7 @@
                 <li>Hiked it yet: {{didTheHike}}</li>
             </ul>
             <p>{{notes}}</p>
+            <p><a href="/journals/{{id}}/update"><span class="glyphicon glyphicon-pencil" aria-hidden="true">edit</span></a></p>
         {{/each}}
     {{else}}
         <p>No journals yet.</p>
