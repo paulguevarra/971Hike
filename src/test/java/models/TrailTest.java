@@ -4,13 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 
-/**
- * Created by Guest on 8/28/17.
- */
 public class TrailTest {
     @Before
     public void setUp() throws Exception {
@@ -18,15 +13,6 @@ public class TrailTest {
 
     @After
     public void tearDown() throws Exception {
-        Trail.deleteAllTrails();
-    }
-
-    //helper
-    public Trail setupNewTrail(){
-        return new Trail ("Trail of Tears", "deadly", "Oregon", 9, 11, 500, 12);
-    }
-    public Trail setupNewTrail2(){
-        return new Trail ("Pacific Crest", "high", "California", 50, 3, 200, 49);
     }
 
     @Test
@@ -52,14 +38,14 @@ public class TrailTest {
         assertEquals("Oregon", testTrail.getLocation());
     }
     @Test
-    public void newTrail_getLatitude_9() throws Exception {
+    public void newTrail_getLatitude_latitude() throws Exception {
         Trail testTrail = setupNewTrail();
-        assertEquals(Integer.valueOf(9), testTrail.getLatitude());
+        assertEquals(Double.valueOf(116.359998), testTrail.getLatitude());
     }
     @Test
-    public void newTrail_getLongitude_11() throws Exception {
+    public void newTrail_getLongitude_longitude() throws Exception {
         Trail testTrail = setupNewTrail();
-        assertEquals(Integer.valueOf(11), testTrail.getLongitude());
+        assertEquals(Double.valueOf(-116.359998), testTrail.getLongitude());
     }
     @Test
     public void newTrail_getMaxDistance_500() throws Exception {
@@ -71,28 +57,12 @@ public class TrailTest {
         Trail testTrail = setupNewTrail();
         assertEquals(12, testTrail.getUserId());
     }
-    @Test
-    public void newTrail_getTrailId_1() throws Exception {
-        Trail testTrail = setupNewTrail();
-        assertEquals(1, testTrail.getId());
+
+    //helper
+    public Trail setupNewTrail(){
+        return new Trail ("Trail of Tears", "deadly", "Oregon", 116.359998, -116.359998, 500, 12);
     }
-    @Test
-    public void trailList_getAllTrailInstances_2() throws Exception {
-        Trail testTrail = setupNewTrail();
-        Trail testTrailTwo = setupNewTrail2();
-        assertEquals(2, Trail.getAllTrails().size());
-    }
-    @Test
-    public void trailList_deleteAllTrailInstances_0() throws Exception {
-        Trail testTrail = setupNewTrail();
-        Trail testTrailTwo = setupNewTrail2();
-        Trail.deleteAllTrails();
-        assertEquals(0, Trail.getAllTrails().size());
-    }
-    @Test
-    public void trailList_findTrailById_0() throws Exception {
-        Trail testTrail = setupNewTrail();
-        Trail testTrailTwo = setupNewTrail2();
-        assertEquals(testTrailTwo, Trail.findTrailById(testTrailTwo.getId()));
+    public Trail setupNewTrail2(){
+        return new Trail ("Pacific Crest", "high", "California", 116.359998, -116.359998, 3, 200);
     }
 }

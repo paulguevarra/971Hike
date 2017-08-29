@@ -20,9 +20,9 @@ userid INTEGER
 
 CREATE TABLE IF NOT EXISTS journals (
 id int PRIMARY KEY auto_increment,
-trailid int,
-userid int,
-createdat VARCHAR,
+trailid INTEGER,
+userid INTEGER,
+createdat DATE,
 bestseason VARCHAR,
 didthehike VARCHAR,
 notes VARCHAR
