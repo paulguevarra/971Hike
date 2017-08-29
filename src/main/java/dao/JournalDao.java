@@ -15,6 +15,8 @@ public interface JournalDao {
 
     Journal findById(int id); // Find journal by id
 
+    void update(int journalId, int userId, String createdAt, String bestSeason, String didTheHike, String notes);//update
+
     void deleteById(int id); //Delete
 
     void clearAllJournals(); // Delete all
