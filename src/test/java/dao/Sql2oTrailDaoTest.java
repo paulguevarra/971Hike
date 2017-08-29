@@ -35,7 +35,44 @@ public class Sql2oTrailDaoTest {
         assertNotEquals(originalTrailId, newTrail.getId());
     }
 
+    @Test
+    public void addedTrailsAreReturnedFromGetAll() throws Exception {
+        Trail newTrail = setupNewTrail();
+        trailDao.add(newTrail);
+        assertEquals(1,trailDao.getAll().size());
+    }
 
+    @Test
+    public void noTrailsRetursEmptyList() throws Exception {
+        assertEquals(0, trailDao.getAll().size());
+    }
+
+    @Test
+    public void existingTrailsCanBeFoundById() throws Exception {
+        Trail trail = setupNewTrail();
+        trailDao.add(trail);
+        Trail foundTrail = trailDao.findById(trail.getId());
+        assertEquals(trail, foundTrail);
+    }
+
+    @Test
+    public void updateChangesTrailContents() throws Exception {
+        Trail trail = setupNewTrail();
+        trailDao.add(trail);
+        trailDao.update(trail.getId(),"Pacific Crest","high","California",116.12321323, -116.359998, 5, 3);
+        Trail updatedTrail = trailDao.findById(trail.getId());
+        assertNotEquals(trail,updatedTrail);
+    }
+
+    @Test
+    public void deleteByIdDeletesCorrectWords() throws Exception {
+        Trail testTrail = setupNewTrail();
+        Trail altTrail = setupNewTrail2();
+        trailDao.add(testTrail);
+        trailDao.add(altTrail);
+        trailDao.deleteById(testTrail.getId());
+        assertEquals(1, trailDao.getAll().size());
+    }
 
     //helper
     public Trail setupNewTrail(){
