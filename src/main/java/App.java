@@ -1,6 +1,6 @@
 import dao.Sql2oTrailDao;
 import dao.Sql2oUserDao;
-import dao.Sql2oReviewDao;
+import dao.Sql2oJournalDao;
 import models.Trail;
 import models.User;
 import org.sql2o.Sql2o;
@@ -26,7 +26,7 @@ public class App {
         Sql2o sql2o = new Sql2o(connectionString, "","");
         Sql2oTrailDao trailDao = new Sql2oTrailDao();
         Sql2oUserDao userDao = new Sql2oUserDao();
-        Sql2oReviewDao reviewDao = new Sql2oReviewDao();
+        Sql2oJournalDao journalDao = new Sql2oJournalDao();
 
         //-CONTENT:-(inorder)
         //get: Display Homepage.
@@ -42,10 +42,11 @@ public class App {
         //post: process journal form. - no success for journal form
         //get: display trails per id
         //get: display trail form for edit
+        //get: delete a trail per id
         //post: update the trail
         //get: display journal form for edit
+        //get: delete a journal per id
         //post: update the journal
-
         //-end of content-
 
 
@@ -140,7 +141,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: display journal form for user
-        get("/trails/:id/journals/new", (req,res)->{ // not sure of the right path "/user/:userid/journal/new"
+        get("/trails/:id/journals/new", (req,res)->{
             Map<String, Object> model = new HashMap<>();
             List<Trail> trails = trailDao.getAll();
             List<User> users = userDao.getAll();
@@ -157,9 +158,11 @@ public class App {
             String bestSeason = req.queryParams("bestSeason");
             String didTheHike = req.queryParams("didTheHike"); // boolean?
             String notes = req.queryParams("notes");
-            Journal journal = new Journal(userId, createdAt, bestSeason, didTheHike);
+            Journal journal = new Journal(userId, createdAt, bestSeason, didTheHike, notes);
             journalDao.add(journal);
-            model.put("journals",journal);
+            List<Journal> journals = journalDao.getAll();
+            List<Trail> trails = trailDao.getAll();
+            model.put("journals",journals);
             return new ModelAndView(model, "trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -179,6 +182,17 @@ public class App {
             Trail editTrail = trailDao.findById(Integer.parseInt(req.params("id")));
             model.put("editTrail",editTrail);
             return new ModelAndView(model, "trail-form");
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete a trail per id
+        get("/trails/:id/delete", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            String id = Integer.parseInt(req.params("id"));
+            trailDao.deleteById(id);
+            // Is all journal under the trail should be delete too?
+            List<Trail> trails = trailDao.getAll();
+            model.put("trails", trail);
+            return new ModelAndView(model, "trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
         //post: update the trail
@@ -203,22 +217,34 @@ public class App {
             return new ModelAndView(model, "journal-form");
         }, new HandlebarsTemplateEngine());
 
+        //get: delete a journal per id
+        get("journal/:id/delete", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            String id = Integer.parseInt(req.params("id"));
+            journalDao.deleteById(id);
+            List<Journal> journals = journalDao.getAll();
+            model.put("journals", journals);
+            return new ModelAndView(model,"trail-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
         //post: update the journal
         post("/journals/:id/update",(req,res)->{
             Map<String, Object> model = new HashMap<>();
-            String userId = req.queryParams("userId");
+            String userId = req.queryParams("id");
             String createdAt = req.queryParams("createdAt");
             String bestSeason = req.queryParams("bestSeason");
             String didTheHike = req.queryParams("didTheHike"); // boolean?
             String notes = req.queryParams("notes");
             int journalId = Integer.parseInt(req.params("id"));
             journalDao.update(journalId, userId, createdAt, bestSeason, didTheHike, notes);
-            List<Trails> trails = trailDao.getAll();
+            List<Trail> trails = trailDao.getAll();
             List<Journal> journals = journalDao.getAll();
             model.put("trails", trails);
             model.put("journals", journals);
             return new ModelAndView(model,"trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
+
+
     }
 }
 
