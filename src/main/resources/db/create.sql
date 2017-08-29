@@ -14,8 +14,7 @@ difficulty VARCHAR,
 location VARCHAR,
 latitude DECIMAL,
 longitude DECIMAL,
-distance DECIMAL,
-userid INTEGER
+distance DECIMAL
 );
 
 CREATE TABLE IF NOT EXISTS journals (

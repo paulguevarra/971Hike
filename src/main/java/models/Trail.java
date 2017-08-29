@@ -14,16 +14,14 @@ public class Trail {
     private Double longitude;
     private Integer distance;
     private int id;
-    private int userId;
 
-    public Trail(String trailName, String difficulty, String location, Double latitude, Double longitude, Integer distance, int userId) {
+    public Trail(String trailName, String difficulty, String location, Double latitude, Double longitude, Integer distance) {
         this.trailName = trailName;
         this.difficulty = difficulty;
         this.location = location;
         this.latitude = latitude;
         this.longitude = longitude;
         this.distance = distance;
-        this.userId = userId;
     }
 
     public String getTrailName() {
@@ -82,17 +80,6 @@ public class Trail {
         this.id = id;
     }
 
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,7 +88,6 @@ public class Trail {
         Trail trail = (Trail) o;
 
         if (id != trail.id) return false;
-        if (userId != trail.userId) return false;
         if (!trailName.equals(trail.trailName)) return false;
         if (!difficulty.equals(trail.difficulty)) return false;
         if (!location.equals(trail.location)) return false;
@@ -119,7 +105,6 @@ public class Trail {
         result = 31 * result + longitude.hashCode();
         result = 31 * result + distance.hashCode();
         result = 31 * result + id;
-        result = 31 * result + userId;
         return result;
     }
 }

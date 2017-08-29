@@ -21,7 +21,7 @@ public class Sql2oTrailDao implements TrailDao{
     @Override
     public void add (Trail trail){
         // Why we need userId here?
-        String sql = "INSERT INTO trails (trailName, difficulty, location, latitude, longitude, distance, userId) VALUES (:trailName, :difficulty, :location, :latitude, :longitude, :distance, :userId)";
+        String sql = "INSERT INTO trails (trailName, difficulty, location, latitude, longitude, distance) VALUES (:trailName, :difficulty, :location, :latitude, :longitude, :distance)";
         try (Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql)
                     .bind(trail)
@@ -52,8 +52,8 @@ public class Sql2oTrailDao implements TrailDao{
 
     // have to double check the parameters for update
     @Override
-    public void update(int id, String trailName, String difficulty, String location, Double latitude, Double longitude, Integer distance, int userId) {
-        String sql = "UPDATE trails SET (trailname, difficulty, location, latitude, longitude, distance, userId) = (:trailname, :difficulty, :location, :latitude, :longitude, :distance, :userId) WHERE id=:id";
+    public void update(int id, String trailName, String difficulty, String location, Double latitude, Double longitude, Integer distance) {
+        String sql = "UPDATE trails SET (trailname, difficulty, location, latitude, longitude, distance) = (:trailname, :difficulty, :location, :latitude, :longitude, :distance) WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("trailname", trailName)
@@ -62,7 +62,6 @@ public class Sql2oTrailDao implements TrailDao{
                     .addParameter("latitude", latitude)
                     .addParameter("longitude", longitude)
                     .addParameter("distance", distance)
-                    .addParameter("userId", userId)
                     .addParameter("id",id)
                     .executeUpdate();
         } catch (Sql2oException ex) {

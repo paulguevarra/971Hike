@@ -59,7 +59,7 @@ public class Sql2oTrailDaoTest {
     public void updateChangesTrailContents() throws Exception {
         Trail trail = setupNewTrail();
         trailDao.add(trail);
-        trailDao.update(trail.getId(),"Pacific Crest","high","California",116.12321323, -116.359998, 5, 3);
+        trailDao.update(trail.getId(),"Pacific Crest","high","California",116.12321323, -116.359998, 5);
         Trail updatedTrail = trailDao.findById(trail.getId());
         assertNotEquals(trail,updatedTrail);
     }
@@ -76,10 +76,10 @@ public class Sql2oTrailDaoTest {
 
     //helper
     public Trail setupNewTrail(){
-        return new Trail ("Trail of Tears", "deadly", "Oregon", 116.359998, -116.359998, 500, 12);
+        return new Trail ("Trail of Tears", "deadly", "Oregon", 116.359998, -116.359998, 500);
     }
     public Trail setupNewTrail2(){
-        return new Trail ("Pacific Crest", "high", "California", 116.359998, -116.359998, 3, 200);
+        return new Trail ("Pacific Crest", "high", "California", 116.359998, -116.359998, 3);
     }
 
 }
