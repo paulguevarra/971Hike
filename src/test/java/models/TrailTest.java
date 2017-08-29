@@ -64,7 +64,7 @@ public class TrailTest {
     @Test
     public void newTrail_getMaxDistance_500() throws Exception {
         Trail testTrail = setupNewTrail();
-        assertEquals(Integer.valueOf(500), testTrail.getMaxDistance());
+        assertEquals(Integer.valueOf(500), testTrail.getDistance());
     }
     @Test
     public void newTrail_getUserId_500() throws Exception {
