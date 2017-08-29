@@ -11,9 +11,9 @@ import java.util.List;
  * Created by Guest on 8/24/17.
  */
 public class Sql2oTrailDao implements TrailDao{
-    private Sql2o sql2o;
+    private final Sql2o sql2o;
 
-    public Sql2oTrailDao(Sql2o Sql2o) {
+    public Sql2oTrailDao(Sql2o sql2o) {
         this.sql2o = sql2o;
     }
 
@@ -21,7 +21,7 @@ public class Sql2oTrailDao implements TrailDao{
     @Override
     public void add (Trail trail){
         // Why we need userId here?
-        String sql = "INSERT INTO trails (trailname, difficulty, location, latitude, longitude, distance, userId) VALUES (:trailname, :difficulty, :location, :latitude, :longitude, :distance, :userId)";
+        String sql = "INSERT INTO trails (trailName, difficulty, location, latitude, longitude, distance, userId) VALUES (:trailName, :difficulty, :location, :latitude, :longitude, :distance, :userId)";
         try (Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql)
                     .bind(trail)
