@@ -15,7 +15,9 @@ public interface UserDao {
 
     User findById(int id); // Find user by id
 
-    void deleteById(int id); //Delete
+    void update(int id, String userName, String userLocation, Double userMaxDistance);
+
+    void deleteUserById(int id); //Delete
 
     void clearAllUsers(); // Delete all
 }
