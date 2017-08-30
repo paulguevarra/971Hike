@@ -21,17 +21,17 @@
 
 {{#partial "content"}}
     <h2>Trails</h2>
-
-    {{#if trails}}
-        <ul>
-        {{#each trails}}
-            <li><a href="/trails/{{id}}">{{trailName}}</a> -- <a href="/trails/{{id}}/update"><span class="glyphicon glyphicon-pencil" aria-hidden="true">edit</span></a></li>
-        {{/each}}
-        </ul>
-    {{else}}
-        <p>No trails yet!</p>
-    {{/if}}
-
+    <div class="well">
+        {{#if trails}}
+            <ul>
+            {{#each trails}}
+                <li><a href="/trails/{{id}}">{{trailName}}</a></li>
+            {{/each}}
+            </ul>
+        {{else}}
+            <p>No trails yet!</p>
+        {{/if}}
+    </div>
 
 {{/partial}}
 
