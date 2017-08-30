@@ -112,15 +112,17 @@ public class App {
 //        }, new HandlebarsTemplateEngine());
 
        //post: process user form
-        post("/users/new", (req,res)->{
+        post("/users", (req,res)->{
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
             String location = req.queryParams("location");
             int distance = Integer.parseInt(req.queryParams("distance"));
             User user = new User(name, location, distance);
             userDao.add(user);
+            int newUserId = user.getId();
             List<User> users = userDao.getAll();
             model.put("users",users);
+            model.put("id", newUserId);
             return new ModelAndView(model, "user-success.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -174,8 +176,6 @@ public class App {
             model.put("journals",journals);
             return new ModelAndView(model, "trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
-
-
 
         //get: display trails form for edit
         get("/trails/:id/update",(req,res)->{
