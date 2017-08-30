@@ -72,12 +72,11 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //post: process trail form
-        post("/trails/new",(req,res)->{
+        post("/trails",(req,res)->{
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
             String difficulty = req.queryParams("difficulty");
             String location = req.queryParams("location");
-
 //            Double latitude = Double.parseDouble(req.queryParams("latitude"));
 //            Double longitude = Double.parseDouble(req.queryParams("longitude"));
             Double distance = Double.parseDouble(req.queryParams("distance"));
@@ -85,7 +84,7 @@ public class App {
             trailDao.add(trail);
             List<Trail> trails = trailDao.getAll();
             model.put("trails", trails);
-            return new ModelAndView(model, "success.hbs");
+            return new ModelAndView(model, "all-trails.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: display user form
@@ -125,6 +124,13 @@ public class App {
             return new ModelAndView(model, "user-success.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get: display all users (optional)
+        get("/users",(req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            List<User> users = userDao.getAll();
+            return new ModelAndView (model,"user-list.hbs");
+        }, new HandlebarsTemplateEngine());
+
         //get: display all trails
         get("/trails",(req,res)->{
             Map<String, Object> model = new HashMap<>();
@@ -136,42 +142,40 @@ public class App {
         //get: display journal form for user
         get("/trails/:id/journals/new", (req,res)->{
             Map<String, Object> model = new HashMap<>();
-          return new ModelAndView(model,"journal-form.hbs");
-        }, new HandlebarsTemplateEngine());
-      
-        //get: display all users (optional)
-        get("/users",(req,res)->{
-           Map<String, Object> model = new HashMap<>();
-           List<User> users = userDao.getAll();
-           return new ModelAndView (model,"user-list.hbs");
-        }, new HandlebarsTemplateEngine());   
-
-        //post: process journal form
-        post("/trails/:id/journals/new", (req,res)->{
-            Map<String, Object> model = new HashMap<>();
             int trailId = Integer.parseInt(req.params("id"));
-            int userId = Integer.parseInt(req.queryParams("userId"));
-            String createdAt = req.queryParams("createdAt");
-            String bestSeason = req.queryParams("bestSeason");
-            String didTheHike = req.queryParams("didTheHike"); // boolean?
-            String notes = req.queryParams("notes");
-            Journal journal = new Journal(createdAt, trailId, userId, bestSeason, didTheHike, notes);
-            journalDao.add(journal);
-            List<Journal> journals = journalDao.getAll();
-            List<Trail> trails = trailDao.getAll();
-            model.put("journals",journals);
-            return new ModelAndView(model, "trail-detail.hbs");
+            model.put("trailId", trailId);
+            return new ModelAndView(model,"journal-form.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: display trails per id
         get("/trails/:id", (req,res)->{
             Map<String, Object> model = new HashMap<>();
             Trail foundTrail = trailDao.findById(Integer.parseInt(req.params("id")));
-            //List<Journal> journals = trailDao.getAllJournalByTrail(foundTrail.getId());
+            List<Journal> journals = journalDao.findByTrailIdAndUserId(foundTrail.getId(), 1);
             model.put("foundTrail",foundTrail);
-            //model.put("journals", journals);
+            model.put("journals", journals);
             return new ModelAndView(model, "trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
+
+        //post: process journal form
+        post("/trails/:id", (req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            int trailId = Integer.parseInt(req.params("id"));
+            int userId = Integer.parseInt(req.queryParams("userId"));
+            String createdAt = req.queryParams("createdAt");
+            String bestSeason = req.queryParams("bestSeason");
+            String didTheHike = req.queryParams("didTheHike");
+            String notes = req.queryParams("notes");
+            Journal journal = new Journal(createdAt, trailId, userId, bestSeason, didTheHike, notes);
+            journalDao.add(journal);
+            List<Journal> journals = journalDao.getAll();
+            Trail ourTrail = trailDao.findById(trailId);
+            model.put("id", trailId);
+            model.put("journals",journals);
+            return new ModelAndView(model, "trail-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
 
         //get: display trails form for edit
         get("/trails/:id/update",(req,res)->{
