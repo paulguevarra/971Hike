@@ -7,20 +7,20 @@ import java.sql.Timestamp;
 public class Journal {
 
     private int id;
-    private LocalDateTime createdAt;
+    private String createdAt;
     private String bestSeason;
     private int trailId;
     private int userId;
-    private String didIt;
+    private String didTheHike;
     private String notes;
 
-    public Journal(String bestSeason, int userId, LocalDateTime createdAt, int trailId, String didIt, String notes) {
-        this.bestSeason = bestSeason;
+    public Journal(String createdAt, int trailId, int userId, String bestSeason, String didTheHike, String notes) {
+        this.createdAt = createdAt;
+        this.trailId = trailId;
         this.userId = userId;
-        this.createdAt = LocalDateTime.now();
-        this.didIt = didIt;
+        this.bestSeason = bestSeason;
+        this.didTheHike = didTheHike;
         this.notes = notes;
-
     }
 
     public int getId() {
@@ -31,11 +31,11 @@ public class Journal {
         this.id = id;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -63,12 +63,12 @@ public class Journal {
         this.userId = userId;
     }
 
-    public String getDidIt() {
-        return didIt;
+    public String getDidTheHike() {
+        return didTheHike;
     }
 
-    public void setDidIt(String didIt) {
-        this.didIt = didIt;
+    public void setDidTheHike(String didTheHike) {
+        this.didTheHike = didTheHike;
     }
 
     public String getNotes() {
@@ -91,7 +91,7 @@ public class Journal {
         if (userId != journal.userId) return false;
         if (!createdAt.equals(journal.createdAt)) return false;
         if (!bestSeason.equals(journal.bestSeason)) return false;
-        if (!didIt.equals(journal.didIt)) return false;
+        if (!didTheHike.equals(journal.didTheHike)) return false;
         return notes.equals(journal.notes);
     }
 
@@ -102,11 +102,10 @@ public class Journal {
         result = 31 * result + bestSeason.hashCode();
         result = 31 * result + trailId;
         result = 31 * result + userId;
-        result = 31 * result + didIt.hashCode();
+        result = 31 * result + didTheHike.hashCode();
         result = 31 * result + notes.hashCode();
         return result;
     }
-
 }
 
 

@@ -11,9 +11,9 @@ import java.util.List;
  * Created by Guest on 8/24/17.
  */
 public class Sql2oTrailDao implements TrailDao{
-    private Sql2o sql2o;
+    private final Sql2o sql2o;
 
-    public Sql2oTrailDao(Sql2o Sql2o) {
+    public Sql2oTrailDao(Sql2o sql2o) {
         this.sql2o = sql2o;
     }
 
@@ -21,7 +21,7 @@ public class Sql2oTrailDao implements TrailDao{
     @Override
     public void add (Trail trail){
         // Why we need userId here?
-        String sql = "INSERT INTO trails (trailname, difficulty, location, latitude, longitude, distance, userId) VALUES (:trailname, :difficulty, :location, :latitude, :longitude, :distance, :userId)";
+        String sql = "INSERT INTO trails (trailName, difficulty, location, latitude, longitude, distance) VALUES (:trailName, :difficulty, :location, :latitude, :longitude, :distance)";
         try (Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql)
                     .bind(trail)
@@ -52,13 +52,15 @@ public class Sql2oTrailDao implements TrailDao{
 
     // have to double check the parameters for update
     @Override
-    public void update(int id, String name, String difficulty, String location, String distance) {
-        String sql = "UPDATE trails SET (trailname, difficulty, location, latitude, longitude, distance, userId) = (:trailname, :difficulty, :location, :latitude, :longitude, :distance, :userId) WHERE id=:id";
+    public void update(int id, String trailName, String difficulty, String location, Double latitude, Double longitude, Integer distance) {
+        String sql = "UPDATE trails SET (trailname, difficulty, location, latitude, longitude, distance) = (:trailname, :difficulty, :location, :latitude, :longitude, :distance) WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
-                    .addParameter("trailname", name)
+                    .addParameter("trailname", trailName)
                     .addParameter("difficulty", difficulty)
                     .addParameter("location",location)
+                    .addParameter("latitude", latitude)
+                    .addParameter("longitude", longitude)
                     .addParameter("distance", distance)
                     .addParameter("id",id)
                     .executeUpdate();

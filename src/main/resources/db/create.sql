@@ -20,11 +20,11 @@ distance DECIMAL
 
 CREATE TABLE IF NOT EXISTS journals (
 id int PRIMARY KEY auto_increment,
-trailid int,
-userid int,
+trailid INTEGER,
+userid INTEGER,
 createdat DATE,
 bestseason VARCHAR,
-didit VARCHAR,
+didthehike VARCHAR,
 notes VARCHAR
 );
 

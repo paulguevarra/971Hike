@@ -3,36 +3,25 @@ package models;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-/**
- * Created by Guest on 8/24/17.
- */
+
 public class Trail {
 
 
     private String trailName;
     private String difficulty;
     private String location;
-    private Integer latitude;
-    private Integer longitude;
+    private Double latitude;
+    private Double longitude;
     private Integer distance;
     private int id;
-    private int userId;
-    private static ArrayList<Trail> trailList = new ArrayList<>();
 
-
-
-
-
-    public Trail(String trailName, String difficulty, String location, Integer latitude, Integer longitude, Integer distance, int userId) {
+    public Trail(String trailName, String difficulty, String location, Double latitude, Double longitude, Integer distance) {
         this.trailName = trailName;
         this.difficulty = difficulty;
         this.location = location;
         this.latitude = latitude;
         this.longitude = longitude;
         this.distance = distance;
-        this.userId = userId;
-        trailList.add(this);
-        this.id=trailList.size();
     }
 
     public String getTrailName() {
@@ -59,19 +48,19 @@ public class Trail {
         this.location = location;
     }
 
-    public Integer getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Integer latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public Integer getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Integer longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
@@ -91,40 +80,20 @@ public class Trail {
         this.id = id;
     }
 
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-
-    }
-
-    public static ArrayList<Trail> getAllTrails(){
-        return trailList;
-    }
-    public static void deleteAllTrails(){
-        trailList.clear();
-    }
-    public static Trail findTrailById(int id){
-        return trailList.get(id-1);
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Trail that = (Trail) o;
+        Trail trail = (Trail) o;
 
-        if (id != that.id) return false;
-        if (!trailName.equals(that.trailName)) return false;
-        if (!difficulty.equals(that.difficulty)) return false;
-        if (!location.equals(that.location)) return false;
-        if (!latitude.equals(that.latitude)) return false;
-        if (!longitude.equals(that.longitude)) return false;
-        if (!distance.equals(that.distance)) return false;
-        return userId!=that.userId;
+        if (id != trail.id) return false;
+        if (!trailName.equals(trail.trailName)) return false;
+        if (!difficulty.equals(trail.difficulty)) return false;
+        if (!location.equals(trail.location)) return false;
+        if (!latitude.equals(trail.latitude)) return false;
+        if (!longitude.equals(trail.longitude)) return false;
+        return distance.equals(trail.distance);
     }
 
     @Override
@@ -135,11 +104,9 @@ public class Trail {
         result = 31 * result + latitude.hashCode();
         result = 31 * result + longitude.hashCode();
         result = 31 * result + distance.hashCode();
-        result = 31 * result + userId;
         result = 31 * result + id;
         return result;
     }
-
 }
 
 
