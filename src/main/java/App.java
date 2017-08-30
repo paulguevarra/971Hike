@@ -1,14 +1,16 @@
 import dao.Sql2oTrailDao;
 import dao.Sql2oUserDao;
 import dao.Sql2oJournalDao;
+
 import models.Journal;
 import models.Trail;
 import models.User;
+
 import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
-import java.util.List;
 
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +24,7 @@ public class App {
         staticFileLocation("/public");
         String connectionString = "jdbc:h2:~/971trail.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'"; //Temporary name of db is 971Trail
         Sql2o sql2o = new Sql2o(connectionString, "","");
+      
         Sql2oTrailDao trailDao = new Sql2oTrailDao(sql2o);
         Sql2oUserDao userDao = new Sql2oUserDao(sql2o);
         Sql2oJournalDao journalDao = new Sql2oJournalDao(sql2o);
@@ -62,7 +65,7 @@ public class App {
 
         //get: Display trail form
         get("/trails/new",(req,res)->{
-            Map<String, Object> model = new HashMap<>();
+          Map<String, Object> model = new HashMap<>();
             List<Trail> trails = trailDao.getAll();
             model.put("trails", trails);
             return new ModelAndView(model,"trail-form.hbs");
@@ -74,6 +77,7 @@ public class App {
             String name = req.queryParams("name");
             String difficulty = req.queryParams("difficulty");
             String location = req.queryParams("location");
+
 //            Double latitude = Double.parseDouble(req.queryParams("latitude"));
 //            Double longitude = Double.parseDouble(req.queryParams("longitude"));
             Double distance = Double.parseDouble(req.queryParams("distance"));
@@ -88,9 +92,27 @@ public class App {
         get("/users/new",(req,res)->{
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "user-form.hbs");
+            }, new HandlebarsTemplateEngine());
+      
+        //get: display delete confirmation form (optional)
+        get("/trails/delete",(req,res)->{
+           Map<String,Object> model = new HashMap<>();
+           return new ModelAndView(model, "delete.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //post: process user form
+        //get: delete all data (optional)
+        get("/trails/delete/success",(req,res)->{
+            Map<String, Object> model = new HashMap<>();
+            trailDao.clearAllTrails();                        // sample- just rename method
+            userDao.clearAllUser();
+            List<Trail> trails = trailDao.getAll();
+            List<User> users = userDao.getAll();
+            model.put("trails",trail);
+            model.put("users",user);
+            return new ModelAndView(model,"success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+       //post: process user form
         post("/users/new", (req,res)->{
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
@@ -110,12 +132,19 @@ public class App {
             model.put("trails", trails);
             return new ModelAndView(model,"all-trails.hbs");
         }, new HandlebarsTemplateEngine());
-
+      
         //get: display journal form for user
         get("/trails/:id/journals/new", (req,res)->{
             Map<String, Object> model = new HashMap<>();
-            return new ModelAndView(model,"journal-form.hbs");
+          return new ModelAndView(model,"journal-form.hbs");
         }, new HandlebarsTemplateEngine());
+      
+        //get: display all users (optional)
+        get("/users",(req,res)->{
+           Map<String, Object> model = new HashMap<>();
+           List<User> users = userDao.getAll();
+           return new ModelAndView (model,"user-list.hbs");
+        }, new HandlebarsTemplateEngine());   
 
         //post: process journal form
         post("/trails/:id/journals/new", (req,res)->{
@@ -205,13 +234,12 @@ public class App {
             String notes = req.queryParams("notes");
             int journalId = Integer.parseInt(req.params("id"));
             journalDao.update(journalId, trailId, userId, createdAt, bestSeason, didTheHike, notes);
-            List<Trail> trails = trailDao.getAll();
+           List<Trail> trails = trailDao.getAll();
             List<Journal> journals = journalDao.getAll();
             model.put("trails", trails);
             model.put("journals", journals);
             return new ModelAndView(model,"trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
-
-
     }
 }
+

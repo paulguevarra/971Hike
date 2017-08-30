@@ -1,0 +1,54 @@
+{{#partial "navtabs"}}
+
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/trails/new">Find a trail</a></li>
+        <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Trails By Region<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                {{#if regions}}
+                    {{#each region}}
+                        <li><a href="/regions/{{id}}">{{name}}</a></li>
+                    {{/each}}
+                {{else}}
+                    <li>No regions yet</li>
+                {{/if}}
+            </ul>
+        </li>
+    </ul>
+{{/partial}}
+
+{{#partial "content"}}
+    <div class="well">
+
+        <h2>{{trail.name}}</h2>
+        <ul>
+            <li>Difficulty: {{trail.difficulty}}</li>
+            <li>Location: {{trail.location}}</li>
+            <!--<li>Latitude: {{trail.latitude}}</li>-->
+            <!--<li>Longitude: {{trail.longitude}}</li>-->
+            <li>Distance: {{trail.distance}}</li>
+        </ul>
+    </div>
+    <p><a href="/trails/{{trail.id}}/update"><span class="glyphicon glyphicon-pencil" aria-hidden="true">edit</span></a></p>
+
+    <p><a href="/trails/{{trail.id}}/journals/new">Log this trail</a></p>
+
+    {{#if journals}}
+        {{#each journals}}
+            <ul>
+                <li>{{createdAt}}</li>
+                <li>Best season: {{bestSeason}}</li>
+                <li>Hiked it yet: {{didTheHike}}</li>
+            </ul>
+            <p>{{notes}}</p>
+            <p><a href="/journals/{{id}}/update"><span class="glyphicon glyphicon-pencil" aria-hidden="true">edit</span></a></p>
+        {{/each}}
+    {{else}}
+        <p>No journals yet.</p>
+    {{/if}}
+
+
+{{/partial}}
+
+{{>layout}}

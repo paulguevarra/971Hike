@@ -1,0 +1,35 @@
+{{#partial "navtabs"}}
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="/">Home</a></li>
+    <li role="presentation"><a href="/trails/new">Find a trail</a></li>
+    <li role="presentation"><a href="/trails">See all trails</a></li>
+    <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Trails By Region<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            {{#if regions}}
+                {{#each region}}
+                    <li><a href="/regions/{{id}}">{{name}}</a></li>
+                {{/each}}
+            {{else}}
+                <li>No regions yet</li>
+            {{/if}}
+        </ul>
+    </li>
+</ul>
+{{/partial}}
+
+{{#partial "content"}}
+    <h1>My Hiking Journal</h1>
+
+
+    <h4>All my hikes, all my notes, right where I can find them!</h4>
+
+    <h5><a href="/trails/new">Add/find a trail to hike!</a></h5>
+
+    <h5><a href="/users/new">Create a new user</a></h5>
+
+
+{{/partial}}
+
+{{>layout}}
