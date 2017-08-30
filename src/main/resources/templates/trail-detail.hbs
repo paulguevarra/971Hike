@@ -33,7 +33,7 @@
 
     <p><a href="/trails/{{foundTrail.id}}/update"><span class="glyphicon glyphicon-pencil" aria-hidden="true">edit</span></a></p>
 
-    <p><a href="/trails/{{foundTrail.id}}/journals/new">Log this trail</a></p>
+    <p><a href="/trails/{{foundTrail.id}}/journals/new">Create an adventure log!</a></p>
 
     </div>
 
@@ -50,7 +50,9 @@
             </div>
         {{/each}}
     {{else}}
-        <p>No journals yet.</p>
+        <div class="well">
+            <p>No journals yet.</p>
+        </div>
     {{/if}}
 
 
