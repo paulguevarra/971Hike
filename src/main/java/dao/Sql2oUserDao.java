@@ -58,9 +58,9 @@ public class Sql2oUserDao implements UserDao {
         String sql = "UPDATE users SET (userName, userLocation, userMaxDistance) = (:username, :userlocation, :usermaxdistance) WHERE id=:id";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("userName", newUserName)
-                    .addParameter("userLocation", newUserLocation)
-                    .addParameter("userMaxDistance", newUserMaxDistance)
+                    .addParameter("username", newUserName)
+                    .addParameter("userlocation", newUserLocation)
+                    .addParameter("usermaxdistance", newUserMaxDistance)
                     .addParameter("id", id)
                     .executeUpdate();
         } catch (Sql2oException ex) {
