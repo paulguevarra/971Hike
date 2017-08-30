@@ -21,73 +21,79 @@
 
 {{#partial "content"}}
 
-    <!-- BEGIN Hiking Project -->
-    <iframe style="width:100%; max-width:1200px; height:500px;" frameborder="0" scrolling="no" src="https://www.hikingproject.com/widget/map?favs=1&location=fixed&x=-13658628&y=5708409&z=7.6&h=500"></iframe>
-    <!-- END Hiking Project -->
-
-    {{#if editTrail}}
-        <h2>Update a trail</h2>
-        <p><a href="/trails/{{editTrail.id}}/delete">delete this trail</a></p>
-        <form action="/trails/{{editTrail.id}}/update" method="post">
-            <div class="form-group">
-                <label for="name">Trail name: </label>
-                <input id="name" name="name" type="text" value="{{editTrail.trailName}}" required>
-            </div>
-            <div class = "form-group">
-                <label for="difficulty">Difficulty (1-10): </label>
-                <input id="difficulty" name="difficulty" type="number" min="1" max="10" value="{{editTrail.difficulty}}" required>
-            </div>
-            <div class = "form-group">
-                <label for="location">Location: </label>
-                <input id="location" name="location" type="text" value="{{editTrail.location}}" required>
-            </div>
-            <!--<div class = "form-group">-->
-                <!--<label for="latitude">Latitude: </label>-->
-                <!--<input id="latitude" name="latitude" type="number" value="{{editTrail.latitude}}"required>-->
-            <!--</div>-->
-            <!--<div class = "form-group">-->
-                <!--<label for="longitude">Longitude: </label>-->
-                <!--<input id="longitude" name="longitude" type="number" value="{{editTrail.longitude}}"required>-->
-            <!--</div>-->
-            <div class = "form-group">
-                <label for="distance">Distance: </label>
-                <input id="distance" name="distance" type="text" value="{{editTrail.distance}}" required>
-            </div>
-
-
-    {{else}}
-        <h2>Add a new trail!</h2>
-        <form action="/trails" method="post">
-            <div class = "form-group">
-                <label for="name">Trail name: </label>
-                <input id="name" name="name" type="text" required>
-            </div>
-            <div class = "form-group">
-                <label for="difficulty">Difficulty (1-10): </label>
-                <input id="difficulty" name="difficulty" type="number" min="1" max="10" required>
-            </div>
-            <div class = "form-group">
-                <label for="location">Location: </label>
-                <input id="location" name="location" type="text" required>
-            </div>
-            <!--<div class = "form-group">-->
-                <!--<label for="latitude">Latitude: </label>-->
-                <!--<input id="latitude" name="latitude" type="number" required>-->
-            <!--</div>-->
-            <!--<div class = "form-group">-->
-                <!--<label for="longitude">Longitude: </label>-->
-                <!--<input id="longitude" name="longitude" type="number" required>-->
-            <!--</div>-->
-            <div class = "form-group">
-                <label for="distance">Distance: </label>
-                <input id="distance" name="distance" type="text" required>
-            </div>
-
-    {{/if}}
-            <button type="submit" class="btn btn-success">Submit</button>
-        </form>
+   <div id="trail-form" class="row">
+       <div class="col-lg-3">
+            <div id="trail-add" class="well">
+            {{#if editTrail}}
+                <h2>Update a trail</h2>
+                <p><a href="/trails/{{editTrail.id}}/delete">delete this trail</a></p>
+                <form action="/trails/{{editTrail.id}}/update" method="post">
+                    <div class="form-group">
+                        <label for="name">Trail name: </label>
+                        <input id="name" name="name" type="text" value="{{editTrail.trailName}}" required>
+                    </div>
+                    <div class = "form-group">
+                        <label for="difficulty">Difficulty (1-10): </label>
+                        <input id="difficulty" name="difficulty" type="number" min="1" max="10" value="{{editTrail.difficulty}}" required>
+                    </div>
+                    <div class = "form-group">
+                        <label for="location">Location: </label>
+                        <input id="location" name="location" type="text" value="{{editTrail.location}}" required>
+                    </div>
+                    <!--<div class = "form-group">-->
+                        <!--<label for="latitude">Latitude: </label>-->
+                        <!--<input id="latitude" name="latitude" type="number" value="{{editTrail.latitude}}"required>-->
+                    <!--</div>-->
+                    <!--<div class = "form-group">-->
+                        <!--<label for="longitude">Longitude: </label>-->
+                        <!--<input id="longitude" name="longitude" type="number" value="{{editTrail.longitude}}"required>-->
+                    <!--</div>-->
+                    <div class = "form-group">
+                        <label for="distance">Distance: </label>
+                        <input id="distance" name="distance" type="text" value="{{editTrail.distance}}" required>
+                    </div>
 
 
+            {{else}}
+                <h2>Add a new trail!</h2>
+                <form action="/trails" method="post">
+                    <div class = "form-group">
+                        <label for="name">Trail name: </label>
+                        <input id="name" name="name" type="text" required>
+                    </div>
+                    <div class = "form-group">
+                        <label for="difficulty">Difficulty (1-10): </label>
+                        <input id="difficulty" name="difficulty" type="number" min="1" max="10" required>
+                    </div>
+                    <div class = "form-group">
+                        <label for="location">Location: </label>
+                        <input id="location" name="location" type="text" required>
+                    </div>
+                    <!--<div class = "form-group">-->
+                        <!--<label for="latitude">Latitude: </label>-->
+                        <!--<input id="latitude" name="latitude" type="number" required>-->
+                    <!--</div>-->
+                    <!--<div class = "form-group">-->
+                        <!--<label for="longitude">Longitude: </label>-->
+                        <!--<input id="longitude" name="longitude" type="number" required>-->
+                    <!--</div>-->
+                    <div class = "form-group">
+                        <label for="distance">Distance: </label>
+                        <input id="distance" name="distance" type="text" required>
+                    </div>
+
+            {{/if}}
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+       </div>
+       <div class="col-lg-9">
+           <!-- BEGIN Hiking Project -->
+           <iframe style="width:100%; max-width:1200px; height:500px;" frameborder="0" scrolling="no" src="https://www.hikingproject.com/widget/map?favs=1&location=fixed&x=-13658628&y=5708409&z=7.6&h=500"></iframe>
+           <!-- END Hiking Project -->
+
+       </div>
+   </div>
 
 {{/partial}}
 

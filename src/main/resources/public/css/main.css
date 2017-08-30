@@ -10,3 +10,31 @@ html {
 	  position: relative;
 	  min-height: 100%;
 }
+
+.footer {
+  bottom: 0;
+  margin-top: 20px;
+  padding-top: 20px;
+  position: static;
+ }
+
+ .nav {
+   background-color: #c1dfff; /*#b6e5ac*/
+
+ }
+
+.nav a {
+  color: #094ab5;
+}
+
+.active {
+  color: #094ab5;
+}
+
+#trail-form {
+  padding-top: 50px;
+}
+
+#trail-add {
+  padding-right: 5px;
+}
