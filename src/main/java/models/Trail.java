@@ -10,17 +10,17 @@ public class Trail {
     private String trailName;
     private String difficulty;
     private String location;
-    private Double latitude;
-    private Double longitude;
+//    private Double latitude;
+//    private Double longitude;
     private Double distance;
     private int id;
 
-    public Trail(String trailName, String difficulty, String location, Double latitude, Double longitude, Double distance) {
+    public Trail(String trailName, String difficulty, String location, Double distance) { //Double latitude, Double longitude,
         this.trailName = trailName;
         this.difficulty = difficulty;
         this.location = location;
-        this.latitude = latitude;
-        this.longitude = longitude;
+//        this.latitude = latitude;
+//        this.longitude = longitude;
         this.distance = distance;
     }
 
@@ -48,21 +48,21 @@ public class Trail {
         this.location = location;
     }
 
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
+//    public Double getLatitude() {
+//        return latitude;
+//    }
+//
+//    public void setLatitude(Double latitude) {
+//        this.latitude = latitude;
+//    }
+//
+//    public Double getLongitude() {
+//        return longitude;
+//    }
+//
+//    public void setLongitude(Double longitude) {
+//        this.longitude = longitude;
+//    }
 
     public Double getDistance() {
         return distance;
@@ -91,8 +91,8 @@ public class Trail {
         if (!trailName.equals(trail.trailName)) return false;
         if (!difficulty.equals(trail.difficulty)) return false;
         if (!location.equals(trail.location)) return false;
-        if (!latitude.equals(trail.latitude)) return false;
-        if (!longitude.equals(trail.longitude)) return false;
+//        if (!latitude.equals(trail.latitude)) return false;
+//        if (!longitude.equals(trail.longitude)) return false;
         return distance.equals(trail.distance);
     }
 
@@ -101,8 +101,8 @@ public class Trail {
         int result = trailName.hashCode();
         result = 31 * result + difficulty.hashCode();
         result = 31 * result + location.hashCode();
-        result = 31 * result + latitude.hashCode();
-        result = 31 * result + longitude.hashCode();
+//        result = 31 * result + latitude.hashCode();
+//        result = 31 * result + longitude.hashCode();
         result = 31 * result + distance.hashCode();
         result = 31 * result + id;
         return result;

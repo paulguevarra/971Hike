@@ -15,7 +15,7 @@ public interface TrailDao {
 
     Trail findById(int id); // Find Trail by id
 
-    void update(int id, String name, String difficulty, String location, Double latitude, Double longitude, Double distance);//update
+    void update(int id, String name, String difficulty, String location, Double distance);//Double latitude, Double longitude,
 
     void deleteById(int id); //Delete
 

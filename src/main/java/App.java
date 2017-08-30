@@ -22,9 +22,9 @@ public class App {
         staticFileLocation("/public");
         String connectionString = "jdbc:h2:~/971trail.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'"; //Temporary name of db is 971Trail
         Sql2o sql2o = new Sql2o(connectionString, "","");
-        Sql2oTrailDao trailDao = new Sql2oTrailDao();
-        Sql2oUserDao userDao = new Sql2oUserDao();
-        Sql2oJournalDao journalDao = new Sql2oJournalDao();
+        Sql2oTrailDao trailDao = new Sql2oTrailDao(sql2o);
+        Sql2oUserDao userDao = new Sql2oUserDao(sql2o);
+        Sql2oJournalDao journalDao = new Sql2oJournalDao(sql2o);
 
         //-CONTENT:-(inorder)
         //get: Display Homepage.
@@ -76,8 +76,8 @@ public class App {
             String location = req.queryParams("location");
             Double latitude = Double.parseDouble(req.queryParams("latitude"));
             Double longitude = Double.parseDouble(req.queryParams("latitude"));
-            Integer distance = Integer.parseInt(req.queryParams("distance"));
-            Trail trail = new Trail(name, difficulty, location, latitude, longitude, distance);
+            Double distance = Double.parseDouble(req.queryParams("distance"));
+            Trail trail = new Trail(name, difficulty, location, distance); //latitude, longitude,
             trailDao.add(trail);
             List<Trail> trails = trailDao.getAll();
             model.put("trails", trails);
@@ -138,9 +138,9 @@ public class App {
         get("/trails/:id", (req,res)->{
             Map<String, Object> model = new HashMap<>();
             Trail foundTrail = trailDao.findById(Integer.parseInt(req.params("id")));
-            List<Journal> journals = trailDao.getAllJournalByTrail(foundTrail.getId());
+            //List<Journal> journals = trailDao.getAllJournalByTrail(foundTrail.getId());
             model.put("foundTrail",foundTrail);
-            model.put("journals", journals);
+            //model.put("journals", journals);
             return new ModelAndView(model, "trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -170,9 +170,9 @@ public class App {
             String location = req.queryParams("location");
             Double latitude = Double.parseDouble(req.queryParams("latitude"));
             Double longitude = Double.parseDouble(req.queryParams("latitude"));
-            int distance = Integer.parseInt(req.queryParams("distance"));
+            Double distance = Double.parseDouble(req.queryParams("distance"));
             int trailId = Integer.parseInt(req.params("id"));
-            trailDao.update(trailId, name, difficulty, location, latitude, longitude, distance);
+            trailDao.update(trailId, name, difficulty, location, distance); //latitude, longitude,
             List<Trail> trails = trailDao.getAll();
             model.put("trails", trails);
             return new ModelAndView(model,"trail-detail.hbs");

@@ -12,8 +12,8 @@ id int PRIMARY KEY auto_increment,
 trailname VARCHAR,
 difficulty VARCHAR,
 location VARCHAR,
-latitude DECIMAL,
-longitude DECIMAL,
+--latitude DECIMAL,
+--longitude DECIMAL,
 distance DECIMAL
 
 );
