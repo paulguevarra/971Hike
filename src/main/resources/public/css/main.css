@@ -27,9 +27,14 @@ html {
   color: #094ab5;
 }
 
-.active {
+.nav li a:hover {
+  background-color: #d9e8f9;
+}
+
+.nav li.active a{
   color: #094ab5;
 }
+
 
 #trail-form {
   padding-top: 50px;
