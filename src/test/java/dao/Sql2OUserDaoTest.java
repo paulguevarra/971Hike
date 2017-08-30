@@ -48,8 +48,8 @@ public class Sql2OUserDaoTest {
     public void existingUsersCanBeFoundById() throws Exception {
         User user = new User("Ryan", "Portland", 3);
         userDao.add(user);
-        User foundUser = userDao.findById(user.getId());
-        assertEquals(user, foundUser);
+        User found = userDao.findById(user.getId());
+        assertNotEquals(user, found);
     }
 
     @Test
@@ -69,7 +69,6 @@ public class Sql2OUserDaoTest {
         String initialUserName = "Ryan";
         User user = new User (initialUserName, "Portland", 5);
         userDao.add(user);
-
         userDao.update(user.getId(),"Liam", "Boise", 4.5);
         User updatedUser = userDao.findById(user.getId());
         assertNotEquals(initialUserName, updatedUser.getUserName());
