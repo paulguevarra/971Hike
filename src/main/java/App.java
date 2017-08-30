@@ -94,23 +94,23 @@ public class App {
             return new ModelAndView(model, "user-form.hbs");
             }, new HandlebarsTemplateEngine());
       
-        //get: display delete confirmation form (optional)
-        get("/trails/delete",(req,res)->{
-           Map<String,Object> model = new HashMap<>();
-           return new ModelAndView(model, "delete.hbs");
-        }, new HandlebarsTemplateEngine());
-
-        //get: delete all data (optional)
-        get("/trails/delete/success",(req,res)->{
-            Map<String, Object> model = new HashMap<>();
-            trailDao.clearAllTrails();                        // sample- just rename method
-            userDao.clearAllUser();
-            List<Trail> trails = trailDao.getAll();
-            List<User> users = userDao.getAll();
-            model.put("trails",trail);
-            model.put("users",user);
-            return new ModelAndView(model,"success.hbs");
-        }, new HandlebarsTemplateEngine());
+//        //get: display delete confirmation form (optional)
+//        get("/trails/delete",(req,res)->{
+//           Map<String,Object> model = new HashMap<>();
+//           return new ModelAndView(model, "delete.hbs");
+//        }, new HandlebarsTemplateEngine());
+//
+//        //get: delete all data (optional)
+//        get("/trails/delete/success",(req,res)->{
+//            Map<String, Object> model = new HashMap<>();
+//            trailDao.clearAllTrails();                        // sample- just rename method
+//            userDao.clearAllUser();
+//            List<Trail> trails = trailDao.getAll();
+//            List<User> users = userDao.getAll();
+//            model.put("trails",trail);
+//            model.put("users",user);
+//            return new ModelAndView(model,"success.hbs");
+//        }, new HandlebarsTemplateEngine());
 
        //post: process user form
         post("/users/new", (req,res)->{
