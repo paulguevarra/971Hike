@@ -11,11 +11,15 @@ html {
 	  min-height: 100%;
 }
 
+.well{
+
+}
+
 .footer {
   bottom: 0;
   margin-top: 20px;
   padding-top: 20px;
-  position: static;
+  position: fixed;
  }
 
  .nav {
@@ -42,4 +46,14 @@ html {
 
 #trail-add {
   padding-right: 5px;
+}
+
+#homepage-well {
+  text-align: center;
+  margin-top: 15%;
+  margin-right: 20%;
+  margin-left: 20%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  opacity: 0.8;
 }
