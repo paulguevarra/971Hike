@@ -1,0 +1,58 @@
+{{#partial "navtabs"}}
+
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/">Home</a></li>
+        <li role="presentation" class="active"><a href="/trails/new">Find a trail</a></li>
+        <li role="presentation"><a href="/trails">See all trails</a></li>
+        <!--<li role="presentation" class="dropdown">-->
+        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Trails By Region<span class="caret"></span></a>-->
+        <!--<ul class="dropdown-menu">-->
+            <!--{{#if regions}}-->
+            <!--{{#each region}}-->
+            <!--<li><a href="/regions/{{id}}">{{name}}</a></li>-->
+                <!--{{/each}}-->
+            <!--{{else}}-->
+        <!--<li>No regions yet</li>-->
+            <!--{{/if}}-->
+        <!--</ul>-->
+        <!--</li>-->
+    </ul>
+{{/partial}}
+
+{{#partial "content"}}
+
+    <div id="trail-form" class="row">
+        <div class="col-lg-3">
+            <div id="trail-add" class="well">
+                <h2>Add a new trail!</h2>
+                <form action="/trails" method="post">
+                    <div class = "form-group">
+                        <label for="name">Trail name: </label>
+                        <input id="name" name="name" type="text" required>
+                    </div>
+                    <div class = "form-group">
+                        <label for="difficulty">Difficulty (1-10): </label>
+                        <input id="difficulty" name="difficulty" type="number" min="1" max="10" required>
+                    </div>
+                    <div class = "form-group">
+                        <label for="location">Location: </label>
+                        <input id="location" name="location" type="text" required>
+                    </div>
+                    <div class = "form-group">
+                        <label for="distance">Distance: </label>
+                        <input id="distance" name="distance" type="text" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <!-- BEGIN Hiking Project -->
+            <iframe style="width:100%; max-width:1200px; height:410px;" frameborder="0" scrolling="no" src="https://www.hikingproject.com/widget?v=3&map=1&type=trail&id=0&x=-13539121&y=5649669&z=4"></iframe>
+            <!-- END Hiking Project -->
+        </div>
+    </div>
+
+{{/partial}}
+
+{{>layout.hbs}}

@@ -140,6 +140,12 @@ public class App {
             model.put("trails", trails);
             return new ModelAndView(model,"all-trails.hbs");
         }, new HandlebarsTemplateEngine());
+
+        //get random trail form
+        get("/trails/random", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model,"trail-random.hbs");
+        }, new HandlebarsTemplateEngine());
       
         //get: display journal form for user
         get("/trails/:id/journals/new", (req,res)->{

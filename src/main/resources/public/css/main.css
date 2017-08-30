@@ -11,16 +11,18 @@ html {
 	  min-height: 100%;
 }
 
-.well{
-
-}
-
 .footer {
   bottom: 0;
   margin-top: 20px;
   padding-top: 20px;
-  position: fixed;
+  position: absolute;
+  height: 35px;
+  color: white;
  }
+
+.well{
+
+}
 
  .nav {
    background-color: #c1dfff; /*#b6e5ac*/
@@ -39,9 +41,17 @@ html {
   color: #094ab5;
 }
 
+.glyphicon {
+  color: green;
+}
+
 
 #trail-form {
   padding-top: 50px;
+}
+
+#all-trails {
+  font-size: 18px;
 }
 
 #trail-add {

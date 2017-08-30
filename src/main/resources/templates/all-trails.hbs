@@ -21,17 +21,20 @@
 
 {{#partial "content"}}
     <h2>Trails</h2>
-    <div class="well">
+    <div id="all-trails" class="well">
         {{#if trails}}
             <ul>
             {{#each trails}}
-                <li><a href="/trails/{{id}}">{{trailName}}</a></li>
+                <!--<li><a href="/trails/{{id}}">{{trailName}}</a></li>-->
+                <p><span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span><a href="/trails/{{id}}">&nbsp;{{trailName}}&nbsp;</a></p>
             {{/each}}
             </ul>
         {{else}}
             <p>No trails yet!</p>
         {{/if}}
     </div>
+
+
 
 {{/partial}}
 
