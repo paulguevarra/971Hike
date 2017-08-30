@@ -74,8 +74,8 @@ public class App {
             String name = req.queryParams("name");
             String difficulty = req.queryParams("difficulty");
             String location = req.queryParams("location");
-            Double latitude = Double.parseDouble(req.queryParams("latitude"));
-            Double longitude = Double.parseDouble(req.queryParams("latitude"));
+//            Double latitude = Double.parseDouble(req.queryParams("latitude"));
+//            Double longitude = Double.parseDouble(req.queryParams("longitude"));
             Double distance = Double.parseDouble(req.queryParams("distance"));
             Trail trail = new Trail(name, difficulty, location, distance); //latitude, longitude,
             trailDao.add(trail);
@@ -168,8 +168,8 @@ public class App {
             String name = req.queryParams("name");
             String difficulty = req.queryParams("difficulty");
             String location = req.queryParams("location");
-            Double latitude = Double.parseDouble(req.queryParams("latitude"));
-            Double longitude = Double.parseDouble(req.queryParams("latitude"));
+//            Double latitude = Double.parseDouble(req.queryParams("latitude"));
+//            Double longitude = Double.parseDouble(req.queryParams("longitude"));
             Double distance = Double.parseDouble(req.queryParams("distance"));
             int trailId = Integer.parseInt(req.params("id"));
             trailDao.update(trailId, name, difficulty, location, distance); //latitude, longitude,
