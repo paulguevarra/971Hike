@@ -30,10 +30,12 @@
             <!--<li>Longitude: {{foundTrail.longitude}}</li>-->
             <li>Distance: {{foundTrail.distance}}</li>
         </ul>
-    </div>
+
     <p><a href="/trails/{{foundTrail.id}}/update"><span class="glyphicon glyphicon-pencil" aria-hidden="true">edit</span></a></p>
 
     <p><a href="/trails/{{foundTrail.id}}/journals/new">Log this trail</a></p>
+
+    </div>
 
     {{#if journals}}
         {{#each journals}}

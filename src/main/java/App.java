@@ -206,8 +206,10 @@ public class App {
             Double distance = Double.parseDouble(req.queryParams("distance"));
             int trailId = Integer.parseInt(req.params("id"));
             trailDao.update(trailId, name, difficulty, location, distance); //latitude, longitude,
+            Trail updatedTrail = trailDao.findById(trailId);
             List<Trail> trails = trailDao.getAll();
             model.put("trails", trails);
+            model.put("foundTrail", updatedTrail);
             return new ModelAndView(model,"trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
