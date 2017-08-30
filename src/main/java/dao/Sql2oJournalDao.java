@@ -60,6 +60,27 @@ public class Sql2oJournalDao implements JournalDao {
     }
 
     @Override
+    public List<Journal> findByTrailId(int trailId){
+        String sql = "SELECT * FROM journals WHERE trailId = :trailId";
+        try (Connection con = sql2o.open()){
+            return con.createQuery(sql)
+                    .addParameter("trailId", trailId)
+                    .executeAndFetch(Journal.class);
+        }
+    }
+
+    @Override
+    public List<Journal> findByTrailIdAndUserId(int trailId, int userId){
+        String sql = "SELECT * FROM journals WHERE trailId = :trailId AND userId = :userId";
+        try (Connection con = sql2o.open()){
+            return con.createQuery(sql)
+                    .addParameter("trailId", trailId)
+                    .addParameter("userId", userId)
+                    .executeAndFetch(Journal.class);
+        }
+    }
+
+    @Override
     public void update(int id, int trailId, int userId, String createdAt, String bestSeason, String didTheHike, String notes) {
         String sql = "UPDATE journals SET (id, trailId, userId, createdAt, bestSeason, didTheHike, notes) = (:id, :trailId, :userId, :createdAt, :bestSeason, :didTheHike, :notes)";
         try (Connection con = sql2o.open()){
@@ -91,6 +112,18 @@ public class Sql2oJournalDao implements JournalDao {
     }
 
     @Override
+    public void deleteJournalByTrailId(int trailId) {
+        String sql = "DELETE FROM journals WHERE trailId = :trailId";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("trailId", trailId)
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public void clearAllJournals() {
         String sql = "DELETE FROM journals";
         try (Connection con = sql2o.open()) {
@@ -100,4 +133,6 @@ public class Sql2oJournalDao implements JournalDao {
             System.out.println(ex);
         }
     }
+
+
 }
