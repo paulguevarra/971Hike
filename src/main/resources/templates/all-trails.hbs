@@ -4,18 +4,18 @@
         <li role="presentation"><a href="/">Home</a></li>
         <li role="presentation"><a href="/trails/new">Find a trail</a></li>
         <li role="presentation" class="active"><a href="/trails">See all trails</a></li>
-        <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Trails By Region<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                {{#if regions}}
-                    {{#each region}}
-                        <li><a href="/regions/{{id}}">{{name}}</a></li>
-                    {{/each}}
-                {{else}}
-                    <li>No regions yet</li>
-                {{/if}}
-            </ul>
-        </li>
+        <!--<li role="presentation" class="dropdown">-->
+            <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Trails By Region<span class="caret"></span></a>-->
+            <!--<ul class="dropdown-menu">-->
+                <!--{{#if regions}}-->
+                    <!--{{#each region}}-->
+                        <!--<li><a href="/regions/{{id}}">{{name}}</a></li>-->
+                    <!--{{/each}}-->
+                <!--{{else}}-->
+                    <!--<li>No regions yet</li>-->
+                <!--{{/if}}-->
+            <!--</ul>-->
+        <!--</li>-->
     </ul>
 {{/partial}}
 
