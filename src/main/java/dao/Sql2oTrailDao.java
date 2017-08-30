@@ -52,7 +52,7 @@ public class Sql2oTrailDao implements TrailDao{
 
     // have to double check the parameters for update
     @Override
-    public void update(int id, String trailName, String difficulty, String location, Double latitude, Double longitude, Integer distance) {
+    public void update(int id, String trailName, String difficulty, String location, Double latitude, Double longitude, Double distance) {
         String sql = "UPDATE trails SET (trailname, difficulty, location, latitude, longitude, distance) = (:trailname, :difficulty, :location, :latitude, :longitude, :distance) WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
@@ -78,17 +78,6 @@ public class Sql2oTrailDao implements TrailDao{
                     .addParameter("id", id)
                     .executeUpdate();
         } catch (Sql2oException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @Override
-    public void clearAllTrails() {
-        String sql = "DELETE FROM trails";
-        try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
-                    .executeUpdate();
-        } catch (Sql2oException ex){
             System.out.println(ex);
         }
     }

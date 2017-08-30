@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS journals (
 id int PRIMARY KEY auto_increment,
 trailid INTEGER,
 userid INTEGER,
-createdat DATE,
+createdat VARCHAR,
 bestseason VARCHAR,
 didthehike VARCHAR,
 notes VARCHAR

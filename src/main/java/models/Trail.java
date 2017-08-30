@@ -12,10 +12,10 @@ public class Trail {
     private String location;
     private Double latitude;
     private Double longitude;
-    private Integer distance;
+    private Double distance;
     private int id;
 
-    public Trail(String trailName, String difficulty, String location, Double latitude, Double longitude, Integer distance) {
+    public Trail(String trailName, String difficulty, String location, Double latitude, Double longitude, Double distance) {
         this.trailName = trailName;
         this.difficulty = difficulty;
         this.location = location;
@@ -64,11 +64,11 @@ public class Trail {
         this.longitude = longitude;
     }
 
-    public Integer getDistance() {
+    public Double getDistance() {
         return distance;
     }
 
-    public void setDistance(Integer distance) {
+    public void setDistance(Double distance) {
         this.distance = distance;
     }
 
