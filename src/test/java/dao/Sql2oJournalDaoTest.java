@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class Sql2oJournalDaoTest {
@@ -34,12 +36,34 @@ public class Sql2oJournalDaoTest {
     }
 
     @Test
-    public void getAll(){
+    public void getAll() throws Exception{
         Journal newJournal = testJournal();
         Journal newJournal2 = testJournal2();
         journalDao.add(newJournal);
         journalDao.add(newJournal2);
         assertEquals(2, journalDao.getAll().size());
+    }
+
+    @Test
+    public void findByTrailId() throws Exception {
+        Journal newJournal = testJournal();
+        Journal otherJournal = new Journal("6/23/2017", 2, 2, "Spring", "did the whole hike", "great picnic spot");
+        journalDao.add(newJournal);
+        journalDao.add(otherJournal);
+        List<Journal> foundJournal = journalDao.findByTrailId(1);
+        assertEquals(1, foundJournal.size());
+    }
+
+    @Test
+    public void findByTrailIdAndUserId() throws Exception {
+        Journal newJournal = testJournal();
+        Journal testJournal = testJournal2();
+        Journal otherJournal = new Journal("6/23/2017", 2, 2, "Spring", "did the whole hike", "great picnic spot");
+        journalDao.add(newJournal);
+        journalDao.add(otherJournal);
+        journalDao.add(testJournal);
+        List<Journal> foundJournal = journalDao.findByTrailIdAndUserId(1, 2);
+        assertEquals(1, foundJournal.size());
     }
 
     @Test
@@ -71,6 +95,16 @@ public class Sql2oJournalDaoTest {
         assertEquals(1, journalDao.getAll().size());
         Journal foundJournal = journalDao.findById(2);
         assertEquals("Spring", foundJournal.getBestSeason());
+    }
+
+    @Test
+    public void deleteJournalsByTrailId(){
+        Journal newJournal = testJournal();
+        Journal otherJournal = new Journal("6/23/2017", 2, 2, "Spring", "did the whole hike", "great picnic spot");
+        journalDao.add(newJournal);
+        journalDao.add(otherJournal);
+        journalDao.deleteJournalByTrailId(2);
+        assertEquals(1, journalDao.getAll().size());
     }
 
     @Test
