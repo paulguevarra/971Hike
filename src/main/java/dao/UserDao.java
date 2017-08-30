@@ -4,9 +4,7 @@ import models.User;
 
 import java.util.List;
 
-/**
- * Created by Guest on 8/24/17.
- */
+
 public interface UserDao {
 
     void add(User user);
