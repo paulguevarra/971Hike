@@ -71,7 +71,7 @@ public class Sql2oJournalDao implements JournalDao {
 
     @Override
     public List<Journal> findByTrailIdAndUserId(int trailId, int userId){
-        String sql = "SELECT * FROM journals WHERE trailId = :trailId AND userId = :userId";
+        String sql = "SELECT * FROM journals WHERE trailId = :trailId AND userId = :userId ORDER BY id DESC";
         try (Connection con = sql2o.open()){
             return con.createQuery(sql)
                     .addParameter("trailId", trailId)
