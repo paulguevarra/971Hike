@@ -231,10 +231,14 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: delete a journal per id
-        get("journal/:id/delete", (req,res)->{
+        get("/journals/:id/delete", (req,res)->{
             Map<String, Object> model = new HashMap<>();
             int id = Integer.parseInt(req.params("id"));
+            Journal thisJournal = journalDao.findById(id);
+            int trailId = thisJournal.getTrailId();
             journalDao.deleteById(id);
+            Trail foundTrail = trailDao.findById(trailId);
+            model.put("foundTrail", foundTrail);
             return new ModelAndView(model,"trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
