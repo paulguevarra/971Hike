@@ -1,10 +1,12 @@
 {{#partial "navtabs"}}
-
-    <ul class="nav nav-tabs">
-        <li role="presentation"><a href="/">Home</a></li>
-        <li role="presentation" class="active"><a href="/trails/new">Find a trail</a></li>
-        <li role="presentation"><a href="/trails">See all trails</a></li>
-    </ul>
+    <div class="navlogo">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="/">Home</a></li>
+            <li role="presentation" class="active"><a href="/trails/new">Find a trail</a></li>
+            <li role="presentation"><a href="/trails">See all trails</a></li>
+            <img src="/images/mthood-logo-med-cropped.png" alt="Mountain logo">
+        </ul>
+    </div>
 {{/partial}}
 
 {{#partial "content"}}
@@ -12,7 +14,7 @@
     <div id="trail-form" class="row">
         <div class="col-lg-3">
             <div id="trail-add" class="well">
-                <h2>Add a new trail!</h2>
+                <h2 class="special">Add a new trail!</h2>
                 <form action="/trails" method="post">
                     <div class = "form-group">
                         <label for="name">Trail name: </label>
@@ -28,9 +30,10 @@
                     </div>
                     <div class = "form-group">
                         <label for="distance">Distance: </label>
-                        <input id="distance" name="distance" type="text" required>
+                        <input id="distance" name="distance" type="number" step="0.01" required>
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
+                    <a href="/trails/random"><input type="button" class="btn btn-info" value="Hit me again!"></a>
                 </form>
             </div>
         </div>

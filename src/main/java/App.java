@@ -217,8 +217,10 @@ public class App {
             trailDao.update(trailId, name, difficulty, location, distance); //latitude, longitude,
             Trail updatedTrail = trailDao.findById(trailId);
             List<Trail> trails = trailDao.getAll();
+            List<Journal> journals = journalDao.findByTrailIdAndUserId(trailId, 1);
             model.put("trails", trails);
             model.put("foundTrail", updatedTrail);
+            model.put("journals", journals);
             return new ModelAndView(model,"trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -243,20 +245,20 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //post: update the journal
-        post("/journals/:id/update",(req,res)->{
+        post("trails/:trail_id/journals/:journal_id/update",(req,res)->{
             Map<String, Object> model = new HashMap<>();
-            int trailId = Integer.parseInt(req.queryParams("trailId")); // should include in trail-form
+            int trailId = Integer.parseInt(req.params("trail_id"));
             int userId = Integer.parseInt(req.queryParams("userId"));
             String createdAt = req.queryParams("createdAt");
             String bestSeason = req.queryParams("bestSeason");
-            String didTheHike = req.queryParams("didTheHike"); // boolean?
+            String didTheHike = req.queryParams("didTheHike");
             String notes = req.queryParams("notes");
-            int journalId = Integer.parseInt(req.params("id"));
+            int journalId = Integer.parseInt(req.params("journal_id"));
             journalDao.update(journalId, trailId, userId, createdAt, bestSeason, didTheHike, notes);
-           List<Trail> trails = trailDao.getAll();
-            List<Journal> journals = journalDao.getAll();
-            model.put("trails", trails);
+            List<Journal> journals = journalDao.findByTrailIdAndUserId(trailId, 1);
+            Trail foundTrail = trailDao.findById(trailId);
             model.put("journals", journals);
+            model.put("foundTrail", foundTrail);
             return new ModelAndView(model,"trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
     }

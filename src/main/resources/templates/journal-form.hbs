@@ -1,10 +1,12 @@
 {{#partial "navtabs"}}
-
-    <ul class="nav nav-tabs">
-        <li role="presentation"><a href="/">Home</a></li>
-        <li role="presentation"><a href="/trails/new">Find a trail</a></li>
-        <li role="presentation"><a href="/trails">See all trails</a></li>
-    </ul>
+    <div class="navlogo">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="/">Home</a></li>
+            <li role="presentation"><a href="/trails/new">Find a trail</a></li>
+            <li role="presentation"><a href="/trails">See all trails</a></li>
+            <img src="/images/mthood-logo-med-cropped.png" alt="Mountain logo">
+        </ul>
+    </div>
 {{/partial}}
 
 {{#partial "content"}}
@@ -13,7 +15,7 @@
         <h2 class="special">Update a journal entry</h2>
         <div class="well">
 
-            <form action="/journals/{{editJournal.id}}/update" method="post">
+            <form action="/trails/{{editJournal.trailId}}/journals/{{editJournal.id}}/update" method="post">
                 <div class="form-group">
                     <label for="userId">Your user ID: </label>
                     <input id="userId" name="userId" type="number" value="{{editJournal.userId}}" required>
