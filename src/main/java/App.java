@@ -176,10 +176,11 @@ public class App {
             String notes = req.queryParams("notes");
             Journal journal = new Journal(createdAt, trailId, userId, bestSeason, didTheHike, notes);
             journalDao.add(journal);
-            List<Journal> journals = journalDao.getAll();
+            List<Journal> journals = journalDao.findByTrailIdAndUserId(trailId, 1);
             Trail ourTrail = trailDao.findById(trailId);
             model.put("id", trailId);
             model.put("journals",journals);
+            model.put("foundTrail", ourTrail);
             return new ModelAndView(model, "trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -198,7 +199,9 @@ public class App {
             trailDao.deleteById(id);
             // Is all journal under the trail should be delete too?
             // journalDao.deleteAllByTrailId(id);
-            return new ModelAndView(model, "trail-detail.hbs");
+            List<Trail> allTrails = trailDao.getAll();
+            model.put("trails", allTrails);
+            return new ModelAndView(model, "all-trails.hbs");
         }, new HandlebarsTemplateEngine());
 
         //post: update the trail
@@ -228,10 +231,14 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: delete a journal per id
-        get("journal/:id/delete", (req,res)->{
+        get("/journals/:id/delete", (req,res)->{
             Map<String, Object> model = new HashMap<>();
             int id = Integer.parseInt(req.params("id"));
+            Journal thisJournal = journalDao.findById(id);
+            int trailId = thisJournal.getTrailId();
             journalDao.deleteById(id);
+            Trail foundTrail = trailDao.findById(trailId);
+            model.put("foundTrail", foundTrail);
             return new ModelAndView(model,"trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
