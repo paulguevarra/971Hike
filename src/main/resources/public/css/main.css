@@ -1,0 +1,104 @@
+body {
+    background: url("/images/hikingpakistan.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      color: black;
+}
+
+html {
+	  position: relative;
+	  min-height: 100%;
+}
+
+.footer {
+  bottom: 0;
+  margin-top: 20px;
+  padding-top: 20px;
+  position: absolute;
+  height: 35px;
+  color: white;
+  font-family: 'Special Elite';
+ }
+
+.special {
+   font-family: 'Special Elite';
+}
+
+.well {
+  opacity: 0.9;
+}
+
+.panel {
+  opacity: 0.9;
+}
+
+.narrow-well {
+  margin-right: 10%;
+  margin-left: 10%;
+  background-color: white;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.nav {
+   background-color: #c1dfff; /*#b6e5ac*/
+   font-family: 'Special Elite';
+ }
+
+.nav a {
+  color: #094ab5;
+}
+
+.nav li a:hover {
+  background-color: #d9e8f9;
+}
+
+.nav li.active a{
+  color: #094ab5;
+}
+
+.navlogo {
+  display: in-line block;
+   padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.navlogo img {
+  float: right;
+  height: 44px;
+  margin-right: 10px;
+  align-vertical: center;
+}
+
+.glyphicon {
+  color: green;
+}
+
+#trail-form {
+  padding-top: 50px;
+}
+
+#all-trails {
+  font-size: 18px;
+  font-family: 'Special Elite';
+}
+
+#trail-add {
+  padding-right: 5px;
+}
+
+#homepage-well {
+  text-align: center;
+  margin-top: 15%;
+  margin-right: 20%;
+  margin-left: 20%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  opacity: 0.8;
+  font-family: 'Special Elite';
+}

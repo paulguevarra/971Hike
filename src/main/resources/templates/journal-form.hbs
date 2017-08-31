@@ -1,0 +1,90 @@
+{{#partial "navtabs"}}
+    <div class="navlogo">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="/">Home</a></li>
+            <li role="presentation"><a href="/trails/new">Find a trail</a></li>
+            <li role="presentation"><a href="/trails">See all trails</a></li>
+            <img src="/images/mthood-logo-med-cropped.png" alt="Mountain logo">
+        </ul>
+    </div>
+{{/partial}}
+
+{{#partial "content"}}
+
+    {{#if editJournal}}
+        <h2 class="special">Update a journal entry</h2>
+        <div class="well">
+
+            <form action="/trails/{{editJournal.trailId}}/journals/{{editJournal.id}}/update" method="post">
+                <div class="form-group">
+                    <label for="userId">Your user ID: </label>
+                    <input id="userId" name="userId" type="number" value="{{editJournal.userId}}" required>
+                </div>
+                <div class = "form-group">
+                    <label for="createdAt">Date: </label>
+                    <input id="createdAt" name="createdAt" type="date" value="{{editJournal.createdAt}}" required>
+                </div>
+                <div class = "form-group">
+                    <label for="bestSeason">Best Season: </label>
+                    <input id="bestSeason" name="bestSeason" type="text" value="{{editJournal.bestSeason}}" required>
+                </div>
+                 <p>Done the hike yet?</p>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="didTheHike" value="Yes">
+                        Yes
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="didTheHike" value="No">
+                        No
+                    </label>
+                </div>
+                <div class = "form-group">
+                    <label>Notes: </label><br>
+                    <textarea rows="4" cols="50" id="notes" name="notes" required>{{editJournal.notes}}</textarea>
+                </div>
+
+            <p><a href="/journals/{{editJournal.id}}/delete">Delete this journal</a></p>
+    {{else}}
+        <h2 class="special">Create an adventure log!</h2>
+        <div class="well">
+            <form action="/trails/{{trailId}}" method="post">
+                <div class="form-group">
+                    <label for="userId">Your user ID: </label>
+                    <input id="userId" name="userId" type="number" required>
+                </div>
+                <div class = "form-group">
+                    <label for="createdAt">Date: </label>
+                    <input id="createdAt" name="createdAt" type="date" required>
+                </div>
+                <div class = "form-group">
+                    <label for="bestSeason">Best Season: </label>
+                    <input id="bestSeason" name="bestSeason" type="text" required>
+                </div>
+                <p>Done the hike yet?</p>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="didTheHike" value="Yes">
+                        Yes
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="didTheHike" value="No">
+                        No
+                    </label>
+                </div>
+                <div class = "form-group">
+                    <label>Notes: </label><br>
+                    <textarea rows="4" cols="50" id="notes" name="notes" type="text" required></textarea>
+                </div>
+    {{/if}}
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+
+{{/partial}}
+
+{{>layout.hbs}}

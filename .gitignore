@@ -44,3 +44,5 @@ settings.gradle
 ############
 .idea
 .idea/
+*.iml
+971Hike.iml

@@ -1,0 +1,49 @@
+{{#partial "navtabs"}}
+    <div class="navlogo">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="/">Home</a></li>
+            <li role="presentation" class="active"><a href="/trails/new">Find a trail</a></li>
+            <li role="presentation"><a href="/trails">See all trails</a></li>
+            <img src="/images/mthood-logo-med-cropped.png" alt="Mountain logo">
+        </ul>
+    </div>
+{{/partial}}
+
+{{#partial "content"}}
+
+    <div id="trail-form" class="row">
+        <div class="col-lg-3">
+            <div id="trail-add" class="well">
+                <h2 class="special">Add a new trail!</h2>
+                <form action="/trails" method="post">
+                    <div class = "form-group">
+                        <label for="name">Trail name: </label>
+                        <input id="name" name="name" type="text" required>
+                    </div>
+                    <div class = "form-group">
+                        <label for="difficulty">Difficulty (1-10): </label>
+                        <input id="difficulty" name="difficulty" type="number" min="1" max="10" required>
+                    </div>
+                    <div class = "form-group">
+                        <label for="location">Location: </label>
+                        <input id="location" name="location" type="text" required>
+                    </div>
+                    <div class = "form-group">
+                        <label for="distance">Distance: </label>
+                        <input id="distance" name="distance" type="number" step="0.01" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <a href="/trails/random"><input type="button" class="btn btn-info" value="Hit me again!"></a>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <!-- BEGIN Hiking Project -->
+            <iframe style="width:100%; max-width:1200px; height:410px;" frameborder="0" scrolling="no" src="https://www.hikingproject.com/widget?v=3&map=1&type=trail&id=0&x=-13539121&y=5649669&z=4"></iframe>
+            <!-- END Hiking Project -->
+        </div>
+    </div>
+
+{{/partial}}
+
+{{>layout.hbs}}
