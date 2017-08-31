@@ -18,15 +18,17 @@ html {
   position: absolute;
   height: 35px;
   color: white;
+  font-family: 'Special Elite';
  }
 
-.well{
-
+.special {
+   font-family: 'Special Elite';
 }
 
- .nav {
-   background-color: #c1dfff; /*#b6e5ac*/
 
+.nav {
+   background-color: #c1dfff; /*#b6e5ac*/
+   font-family: 'Special Elite';
  }
 
 .nav a {
@@ -52,6 +54,7 @@ html {
 
 #all-trails {
   font-size: 18px;
+  font-family: 'Special Elite';
 }
 
 #trail-add {
@@ -66,4 +69,5 @@ html {
   padding-top: 20px;
   padding-bottom: 20px;
   opacity: 0.8;
+  font-family: 'Special Elite';
 }

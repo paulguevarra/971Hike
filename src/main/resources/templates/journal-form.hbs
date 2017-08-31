@@ -22,7 +22,7 @@
 {{#partial "content"}}
 
     {{#if editJournal}}
-        <h2>Update a journal entry</h2>
+        <h2 class="special">Update a journal entry</h2>
         <div class="well">
 
             <form action="/journals/{{editJournal.id}}/update" method="post">
@@ -58,7 +58,7 @@
 
             <p><a href="/journals/{{editJournal.id}}/delete">Delete this trail</a></p>
     {{else}}
-        <h2>Create an adventure log!</h2>
+        <h2 class="special">Create an adventure log!</h2>
         <div class="well">
             <form action="/trails/{{trailId}}" method="post">
                 <div class="form-group">
