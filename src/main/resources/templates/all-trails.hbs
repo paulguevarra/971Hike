@@ -1,0 +1,31 @@
+{{#partial "navtabs"}}
+    <div class="navlogo">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="/">Home</a></li>
+            <li role="presentation"><a href="/trails/new">Find a trail</a></li>
+            <li role="presentation" class="active"><a href="/trails">See all trails</a></li>
+            <img src="/images/mthood-logo-med-cropped.png" alt="Mountain logo">
+        </ul>
+    </div>
+{{/partial}}
+
+{{#partial "content"}}
+    <h2 class="special">Trails</h2>
+    <div id="all-trails" class="well">
+        {{#if trails}}
+            <ul>
+            {{#each trails}}
+                <!--<li><a href="/trails/{{id}}">{{trailName}}</a></li>-->
+                <p><span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span><a href="/trails/{{id}}">&nbsp;{{trailName}}&nbsp;</a></p>
+            {{/each}}
+            </ul>
+        {{else}}
+            <p>No trails yet!</p>
+        {{/if}}
+    </div>
+
+
+
+{{/partial}}
+
+{{>layout.hbs}}
