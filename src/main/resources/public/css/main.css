@@ -25,6 +25,22 @@ html {
    font-family: 'Special Elite';
 }
 
+.well {
+  opacity: 0.9;
+}
+
+.panel {
+  opacity: 0.9;
+}
+
+.narrow-well {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+a:hover {
+  text-decoration: none;
+}
 
 .nav {
    background-color: #c1dfff; /*#b6e5ac*/
@@ -60,6 +76,8 @@ html {
 #trail-add {
   padding-right: 5px;
 }
+
+
 
 #homepage-well {
   text-align: center;
