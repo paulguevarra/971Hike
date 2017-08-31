@@ -176,10 +176,11 @@ public class App {
             String notes = req.queryParams("notes");
             Journal journal = new Journal(createdAt, trailId, userId, bestSeason, didTheHike, notes);
             journalDao.add(journal);
-            List<Journal> journals = journalDao.getAll();
+            List<Journal> journals = journalDao.findByTrailIdAndUserId(trailId, 1);
             Trail ourTrail = trailDao.findById(trailId);
             model.put("id", trailId);
             model.put("journals",journals);
+            model.put("foundTrail", ourTrail);
             return new ModelAndView(model, "trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
