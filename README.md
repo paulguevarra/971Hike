@@ -28,8 +28,7 @@ Hiking journal that allows for noting trails the user has hiked or wants to hike
 |  update changes to a user name  |  ID# 1 "Ryan"  to "Kim"  |  ID# "Kim"  |
 |  delete user by id  |  delete ID# 2 Paul  |  Users list: ID# 1 Ryan, ID# 3 Esti  |
 |  delete all users  |  delete all users  |  no users found  |
-|  ccc  |  cc  |  cc  |
-|  ccc  |  cc  |  cc  |
+
 
 
 ### Journal Class
