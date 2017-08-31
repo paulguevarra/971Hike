@@ -217,8 +217,10 @@ public class App {
             trailDao.update(trailId, name, difficulty, location, distance); //latitude, longitude,
             Trail updatedTrail = trailDao.findById(trailId);
             List<Trail> trails = trailDao.getAll();
+            List<Journal> journals = journalDao.findByTrailIdAndUserId(trailId, 1);
             model.put("trails", trails);
             model.put("foundTrail", updatedTrail);
+            model.put("journals", journals);
             return new ModelAndView(model,"trail-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
