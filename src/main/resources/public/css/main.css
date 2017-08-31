@@ -36,6 +36,7 @@ html {
 .narrow-well {
   margin-right: 10%;
   margin-left: 10%;
+  background-color: white;
 }
 
 a:hover {
@@ -63,7 +64,6 @@ a:hover {
   color: green;
 }
 
-
 #trail-form {
   padding-top: 50px;
 }
@@ -76,8 +76,6 @@ a:hover {
 #trail-add {
   padding-right: 5px;
 }
-
-
 
 #homepage-well {
   text-align: center;
