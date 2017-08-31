@@ -199,7 +199,9 @@ public class App {
             trailDao.deleteById(id);
             // Is all journal under the trail should be delete too?
             // journalDao.deleteAllByTrailId(id);
-            return new ModelAndView(model, "trail-detail.hbs");
+            List<Trail> allTrails = trailDao.getAll();
+            model.put("trails", allTrails);
+            return new ModelAndView(model, "all-trails.hbs");
         }, new HandlebarsTemplateEngine());
 
         //post: update the trail
