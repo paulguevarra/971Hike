@@ -82,7 +82,7 @@ public class Sql2oJournalDao implements JournalDao {
 
     @Override
     public void update(int id, int trailId, int userId, String createdAt, String bestSeason, String didTheHike, String notes) {
-        String sql = "UPDATE journals SET (id, trailId, userId, createdAt, bestSeason, didTheHike, notes) = (:id, :trailId, :userId, :createdAt, :bestSeason, :didTheHike, :notes)";
+        String sql = "UPDATE journals SET (trailId, userId, createdAt, bestSeason, didTheHike, notes) = (:trailId, :userId, :createdAt, :bestSeason, :didTheHike, :notes) WHERE id = :id";
         try (Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("id", id)
